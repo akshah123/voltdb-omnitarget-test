@@ -75,7 +75,8 @@ PARTITION TABLE conversion ON COLUMN transaction_id;
 
 CREATE TABLE test (
   transaction_id varchar(255) NOT NULL,
-  offer_id integer NOT NULL
+  offer_id integer NOT NULL,
+  cost decimal(10,2) NOT NULL
 );
 
 CREATE UNIQUE index test_transaction_id ON test (transaction_id);

@@ -28,7 +28,7 @@ end
 def insert_click(client, click)
 	puts click
 	begin
-		client.call_procedure("TEST.insert", click[0], click[1])
+		client.call_procedure("TEST.insert", *click)
 	rescue VoltRb::VoltError => bang
 		puts "Error: #{bang.status_string}"
 	rescue Exception => e
