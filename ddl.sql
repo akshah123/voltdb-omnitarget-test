@@ -8,7 +8,7 @@ CREATE TABLE conversion (
   sale_amount decimal(10,2),
   is_valid tinyint,
   is_dynamic_revenue tinyint NOT NULL,
-  CONSTRAINT PK_conversion PRIMARY KEY (id)
+  CONSTRAINT PK_conversion PRIMARY KEY (transaction_id)
 );
 
 CREATE UNIQUE index conversion_transaction_id ON conversion (transaction_id);
