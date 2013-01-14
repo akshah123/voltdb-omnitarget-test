@@ -1,5 +1,4 @@
 CREATE TABLE conversion (
-  id integer  NOT NULL,
   transaction_id varchar(255) NOT NULL,
   date timestamp NOT NULL,
   date_interval timestamp NOT NULL,
@@ -17,7 +16,6 @@ CREATE INDEX conversion_date ON conversion (date);
 CREATE INDEX conversion_date_interval ON conversion (date_interval,cost,revenue);
 
 CREATE TABLE click (
-  id integer NOT NULL,
   transaction_id varchar(255) NOT NULL,
   click_date timestamp NOT NULL ,
   click_date_interval timestamp NOT NULL ,
@@ -61,7 +59,6 @@ CREATE TABLE click (
   browser varchar(255) ,
   os varchar(255) ,
   ip varchar(15) ,	
-  CONSTRAINT PK_click PRIMARY KEY (id)
 );
 
 CREATE UNIQUE index click_transaction_id ON click (transaction_id);
@@ -73,4 +70,4 @@ CREATE INDEX click_ip ON click (ip);
 CREATE INDEX click_aff_id ON click (aff_id);
 
 PARTITION TABLE click ON COLUMN offer_id;
-PARTITION TABLE conversion ON COLUMN id;
+PARTITION TABLE conversion ON COLUMN transaction_id;
