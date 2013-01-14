@@ -24,10 +24,10 @@ def get_random_click()
   click_date  = Time.now
   click_date_interval = click_date
   related_click = ""
-  is_unique = [true,false].sample
+  is_unique = rand(0..1)
   offer_id = rand(1..1500)
   aff_id = rand(1..1500)
-  aff_id_new_old = rand(1..1500)
+  aff_id_new_old = get_random_string(25)
   aff_id_new = rand(1..1500)
   url_id = rand(1..1500)
   finance_rule_id = rand(1..2000)
