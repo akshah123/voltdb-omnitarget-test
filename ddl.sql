@@ -69,5 +69,53 @@ CREATE INDEX click_perm2 ON click (click_date_interval,offer_id,sub1,sub2,sub3,s
 CREATE INDEX click_ip ON click (ip);
 CREATE INDEX click_aff_id ON click (aff_id);
 
+
 PARTITION TABLE click ON COLUMN offer_id;
 PARTITION TABLE conversion ON COLUMN transaction_id;
+
+CREATE TABLE test (
+  transaction_id varchar(255) NOT NULL,
+  related_click varchar(255) ,
+  is_unique tinyint ,
+  offer_id integer NOT NULL,
+  aff_id integer,
+  aff_id_new_old varchar(32),
+  aff_id_new integer,
+  url_id integer,
+  finance_rule_id integer NOT NULL,
+  ad_id integer,
+  campaign_id integer ,
+  creative_id integer ,
+  placement_id integer ,
+  dma integer ,
+  city varchar(255) ,
+  state varchar(50) ,
+  zip varchar(11) ,
+  country varchar(20) ,
+  latitude decimal(9,6) ,
+  longitude decimal(10,6) ,
+  image varchar(10) ,
+  text varchar(10) ,
+  dynamic_location_text varchar(10) ,
+  callout varchar(10) ,
+  callout_text varchar(10) ,
+  animation varchar(10) ,
+  time_of_day integer ,
+  source varchar(255) ,
+  sub1 varchar(255) ,
+  sub2 varchar(255) ,
+  sub3 varchar(255) ,
+  sub4 varchar(255) ,
+  sub5 varchar(255) ,
+  params varchar(255) ,
+  impression_cost decimal(10,6) ,
+  cost decimal(10,2) NOT NULL,
+  revenue decimal(10,2) NOT NULL,
+  referrer varchar(255) ,
+  browser varchar(255) ,
+  os varchar(255) ,
+  ip varchar(15)	
+);
+
+CREATE UNIQUE index test_transaction_id ON test (transaction_id);
+PARTITION TABLE test ON COLUMN offer_id;
