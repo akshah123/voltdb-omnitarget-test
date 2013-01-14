@@ -22,7 +22,8 @@ end
 def get_random_click()
   transaction_id  =  get_random_string(50,false)
   offer_id = rand(1..1500)
-  return [transaction_id, offer_id]
+  cost = rand(50)
+  return [transaction_id, offer_id, cost]
 end
 
 def insert_click(client, click)
