@@ -63,7 +63,7 @@ def get_random_click()
   ip = "192.168.31.138"
   is_valid = [true,false].sample
   is_dynamic_revenue = [true,false].sample
-  return [transaction_id, click_date, click_date_interval, related_click, is_unique, offer_id, aff_id, aff_id_new_old, aff_id_new, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, callout, callout_text, animation, time_of_day, source, sub1, sub2, sub3, sub4, sub5, params, impression_cost, cost, revenue, referrer, browser, os, ip]
+  return [transaction_id, related_click, is_unique, offer_id, aff_id, aff_id_new_old, aff_id_new, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, callout, callout_text, animation, time_of_day, source, sub1, sub2, sub3, sub4, sub5, params, impression_cost, cost, revenue, referrer, browser, os, ip]
 end
 
 def insert_click(client, click)
