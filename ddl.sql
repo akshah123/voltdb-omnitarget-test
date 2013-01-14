@@ -58,7 +58,7 @@ CREATE TABLE click (
   referrer varchar(255) ,
   browser varchar(255) ,
   os varchar(255) ,
-  ip varchar(15) ,	
+  ip varchar(15)	
 );
 
 CREATE UNIQUE index click_transaction_id ON click (transaction_id);
