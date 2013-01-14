@@ -5,6 +5,7 @@ $o =  [('a'..'z'),('A'..'Z'),(0..9)].map{|i| i.to_a}.flatten
 def get_random_string(size=26, random_length = true)
 	if(random_length)
 		size = rand(1..size)
+	end
 	result = (0...size).map{ $o[rand($o.length)] }.join
 	
 	result
@@ -18,7 +19,7 @@ def time(step = "")
   exec_time
 end
 
-def get_random_click_data()
+def get_random_click()
   transaction_id  =  get_random_string(50,false)
   click_date  = Date.today
   click_date_interval = click_date
@@ -61,21 +62,20 @@ def get_random_click_data()
   referrer = get_random_string(255)
   browser  = get_random_string(250)
   os  = get_random_string(15)
-  ip = nill
+  ip = nil
   is_valid = [true,false].sample
   is_dynamic_revenue = [true,false].sample
   return [transaction_id, click_date, click_date_interval, related_click, is_unique, offer_id, aff_id, aff_id_new_old, aff_id_new, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, callout, callout_text, animation, time_of_day, source, sub1, sub2, sub3, sub4, sub5, params, impression_cost, cost, revenue, referrer, browser, os, ip]
 end
 
-def insert_click(db, click)
-	client.call_procedure(:CLICK.insert, click)
+def insert_click(client, click)
+	client.call_procedure(:"CLICK.insert", click)
 end
 
 client = VoltRb::Client.new
 
-time("generate string") do
+time("Insert data") do
 	10.times do 
 		insert_click(client, get_random_click())
 	end
 end
-
