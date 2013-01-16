@@ -21,7 +21,7 @@ end
 
 def get_random_click()
   transaction_id  =  get_random_string(50,false)
-  click_date  = Time.now
+  click_date  = (Time.now.to_i*1000000)
   click_date_interval = click_date
   related_click = ""
   is_unique = rand(0..1)

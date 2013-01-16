@@ -22,7 +22,7 @@ end
 def get_random_click()
   transaction_id  =  get_random_string(50,false)
   related_click = ""
-  is_unique = [true,false].sample
+  is_unique = rand(0..1)
   offer_id = rand(1..1500)
   aff_id = rand(1..1500)
   aff_id_new_old = rand(1..1500)
