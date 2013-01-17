@@ -56,7 +56,7 @@ public class Click extends VoltProcedure {
 		, String zip, String country, float latitude, float longitude, String image, String text, String dynamic_location_text, String source, String sub1, String sub2, String sub3, String sub4, String sub5
 		, float cost, float revenue, String referrer, String browser, String os, String ip) {
 
-		Date click_date = VoltProcedure.getTransactionTime();
+		Date click_date = getTransactionTime();
 		Date click_date_interval = Calendar.set(click_date.getYear(), click_date.getMonth(), click_date.getHourOfDay(), 0);
 		
         // Post the vote
