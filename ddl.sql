@@ -119,3 +119,5 @@ CREATE TABLE test (
 
 CREATE UNIQUE index test_transaction_id ON test (transaction_id);
 PARTITION TABLE test ON COLUMN offer_id;
+
+CREATE PROCEDURE FROM CLASS omnitarget.procedures.Click;
