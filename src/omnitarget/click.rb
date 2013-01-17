@@ -21,7 +21,6 @@ end
 
 def get_random_click()
   transaction_id  =  get_random_string(50,false)
-  related_click = ""
   is_unique = rand(0..1)
   offer_id = rand(1..1500)
   aff_id = rand(1..1500)
@@ -53,7 +52,7 @@ def get_random_click()
   browser  = get_random_string(250)
   os  = get_random_string(15)
   ip = "192.168.31.138"
-  return [transaction_id, related_click, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip]
+  return [transaction_id, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip]
 end
 
 def insert_click(client, click)
