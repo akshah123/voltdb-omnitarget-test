@@ -38,7 +38,6 @@ function clean() {
 function srccompile() {
     mkdir -p obj
 	javac -target 1.6 -source 1.6 -classpath $CLASSPATH -d obj \
-        src/omnitarget/*.java \
         src/omnitarget/procedures/*.java
 	# stop if compilation fails
     if [ $? != 0 ]; then exit; fi
