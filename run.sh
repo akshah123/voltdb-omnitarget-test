@@ -9,10 +9,10 @@ else
     VOLTDB_BIN="$(pwd)/../../bin"
 fi
 # installation layout has all libraries in $VOLTDB_ROOT/lib/voltdb
-if [ -d "$VOLTDB_BIN/../lib/voltdb" ]; then
+if [ -d "$VOLTDB_BIN/../lib" ]; then
     VOLTDB_BASE=$(dirname "$VOLTDB_BIN")
-    VOLTDB_LIB="$VOLTDB_BASE/lib/voltdb"
-    VOLTDB_VOLTDB="$VOLTDB_LIB"
+    VOLTDB_LIB="$VOLTDB_BASE/../lib"
+    VOLTDB_VOLTDB="$VOLTDB_BIN/../voltdb"
 # distribution layout has libraries in separate lib and voltdb directories
 else
     VOLTDB_LIB="`pwd`/../../lib"
