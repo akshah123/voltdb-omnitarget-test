@@ -21,8 +21,6 @@ end
 
 def get_random_click()
   transaction_id  =  get_random_string(50,false)
-  click_date  = (Time.now.to_i*1000000)
-  click_date_interval = click_date
   related_click = ""
   is_unique = rand(0..1)
   offer_id = rand(1..1500)
@@ -63,13 +61,13 @@ def get_random_click()
   browser  = get_random_string(250)
   os  = get_random_string(15)
   ip = "192.168.31.138"
-  return [transaction_id, click_date, click_date_interval, related_click, is_unique, offer_id, aff_id, aff_id_new_old, aff_id_new, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, callout, callout_text, animation, time_of_day, source, sub1, sub2, sub3, sub4, sub5, params, impression_cost, cost, revenue, referrer, browser, os, ip]
+  return [transaction_id, related_click, is_unique, offer_id, aff_id, aff_id_new_old, aff_id_new, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, callout, callout_text, animation, time_of_day, source, sub1, sub2, sub3, sub4, sub5, params, impression_cost, cost, revenue, referrer, browser, os, ip]
 end
 
 def insert_click(client, click)
 	puts click
 	begin
-		client.call_procedure("CLICK.insert", *click)
+		client.call_procedure("click", *click)
 	rescue VoltRb::VoltError => bang
 		puts "Error: #{bang.status_string}"
 	rescue Exception => e
@@ -79,9 +77,6 @@ def insert_click(client, click)
 end
 
 client = VoltRb::Client.new
-
-response = client.call_procedure("@ExplainProc", "CLICK.insert")
-response.results[0].each { |row| puts row }
 
 time("Insert data") do
 	1.times do 
