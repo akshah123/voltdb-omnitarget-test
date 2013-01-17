@@ -67,7 +67,7 @@ end
 def insert_click(client, click)
 	puts click
 	begin
-		client.call_procedure("click", *click)
+		client.call_procedure("Click", *click)
 	rescue VoltRb::VoltError => bang
 		puts "Error: #{bang.status_string}"
 	rescue Exception => e

@@ -40,7 +40,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 @ProcInfo (
-    partitionInfo = "click.offer_id:0",
+    partitionInfo = "click.offer_id:2",
     singlePartition = true
 )
 public class Click extends VoltProcedure {
@@ -54,8 +54,8 @@ public class Click extends VoltProcedure {
 				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
     public long run(String transaction_id, int is_unique, int offer_id, int aff_id, int url_id, int finance_rule_id, int ad_id, int campaign_id, int creative_id, int placement_id, int dma, String city, String state
-		, String zip, String country, float latitude, float longitude, String image, String text, String dynamic_location_text, String source, String sub1, String sub2, String sub3, String sub4, String sub5
-		, float cost, float revenue, String referrer, String browser, String os, String ip) {
+		, String zip, String country, double latitude, double longitude, String image, String text, String dynamic_location_text, String source, String sub1, String sub2, String sub3, String sub4, String sub5
+		, double cost, double revenue, String referrer, String browser, String os, String ip) {
 
 		Date click_date = getTransactionTime();
 		Calendar calendar = GregorianCalendar.getInstance();
