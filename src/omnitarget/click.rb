@@ -56,21 +56,20 @@ def get_random_click()
 end
 
 def insert_click(client, click)
-	puts click
 	begin
 		client.call_procedure("Click", *click)
 	rescue VoltRb::VoltError => bang
 		puts "Error: #{bang.status_string}"
-	rescue Exception => e
-		puts e
 	end
 
 end
 
 client = VoltRb::Client.new
 
-time("Insert data") do
-	1.times do 
-		insert_click(client, get_random_click())
+10.times do 
+	time("Insert 10k clicks") do
+		10000.times do 
+			insert_click(client, get_random_click())
+		end
 	end
 end
