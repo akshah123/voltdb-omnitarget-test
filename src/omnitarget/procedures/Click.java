@@ -38,7 +38,7 @@ import org.voltdb.VoltTable;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.math.BigDecimal
+import java.math.BigDecimal;
 
 @ProcInfo (
     partitionInfo = "click.offer_id:2",
@@ -67,7 +67,8 @@ public class Click extends VoltProcedure {
 		Calendar calendar = GregorianCalendar.getInstance();
 		calendar.setTime(click_date);
 		Calendar intervalCalendar = GregorianCalendar.getInstance();
-		intervalCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY),0);
+		intervalCalendar.clear();
+		intervalCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY),0,0);
 		Date click_date_interval = intervalCalendar.getTime();
 		
         // Post the vote
