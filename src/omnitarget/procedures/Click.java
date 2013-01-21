@@ -54,7 +54,12 @@ public class Click extends VoltProcedure {
             "INSERT INTO click (transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip) " +
 				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
-    public long run(String transaction_id, int is_unique, int offer_id, int aff_id, int url_id, int finance_rule_id, int ad_id, int campaign_id, int creative_id, int placement_id, int dma, String city, String state
+	// Records a click
+    public final SQLStmt insertExportClickStmt = new SQLStmt(
+            "INSERT INTO export_click (transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip) " +
+				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+	public long run(String transaction_id, int is_unique, int offer_id, int aff_id, int url_id, int finance_rule_id, int ad_id, int campaign_id, int creative_id, int placement_id, int dma, String city, String state
 		, String zip, String country, BigDecimal latitude, BigDecimal longitude, String image, String text, String dynamic_location_text, String source, String sub1, String sub2, String sub3, String sub4, String sub5
 		, BigDecimal cost, BigDecimal revenue, String referrer, String browser, String os, String ip) {
 
@@ -69,6 +74,10 @@ public class Click extends VoltProcedure {
         voltQueueSQL(insertClickStmt, EXPECT_SCALAR_MATCH(1), transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip);
         voltExecuteSQL(true);
 
+		// Post the vote
+        voltQueueSQL(insertExportClickStmt, EXPECT_SCALAR_MATCH(1), transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip);
+        voltExecuteSQL(true);
+		
         // Set the return value to 0: successful vote
         return CLICK_SUCCESSFUL;
     }

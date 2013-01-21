@@ -4,4 +4,13 @@
     <httpd enabled="true">
         <jsonapi enabled="true" />
     </httpd>
+	<export enable="true" onserver="jdbc">
+		<configuration>
+			<property name="jdbcurl">jdbc:postgresql://yellowhammer.clllh1ix2xz2.us-east-1.redshift.amazonaws.com:5439/omnitarget</property>
+			<property name="jdbcuser">root</property>
+			<property name="jdbcpassword">Yellowhammer1</property>
+			<property name="jdbcdriver">csv</property>
+			<property name="schema">csv</property>
+		</configuration>
+	</export>
 </deployment>

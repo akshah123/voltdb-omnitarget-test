@@ -73,8 +73,10 @@ CREATE INDEX click_aff_id ON click (aff_id);
 PARTITION TABLE click ON COLUMN offer_id;
 PARTITION TABLE conversion ON COLUMN transaction_id;
 
-CREATE TABLE test (
+CREATE TABLE export_click (
   transaction_id varchar(255) NOT NULL,
+  click_date timestamp NOT NULL ,
+  click_date_interval timestamp NOT NULL ,
   related_click varchar(255) ,
   is_unique tinyint ,
   offer_id integer NOT NULL,
@@ -117,7 +119,6 @@ CREATE TABLE test (
   ip varchar(15)	
 );
 
-CREATE UNIQUE index test_transaction_id ON test (transaction_id);
-PARTITION TABLE test ON COLUMN offer_id;
+EXPORT TABLE export_click;
 
 CREATE PROCEDURE FROM CLASS omnitarget.procedures.Click;
