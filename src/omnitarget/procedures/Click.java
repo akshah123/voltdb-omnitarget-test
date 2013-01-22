@@ -71,15 +71,14 @@ public class Click extends VoltProcedure {
 		intervalCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY),0,0);
 		Date click_date_interval = intervalCalendar.getTime();
 		
-        // Post the vote
+        // Post the click
         voltQueueSQL(insertClickStmt, EXPECT_SCALAR_MATCH(1), transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip);
-        voltExecuteSQL(true);
-
-		// Post the vote
+        
+		// Export the click
         voltQueueSQL(insertExportClickStmt, EXPECT_SCALAR_MATCH(1), transaction_id, click_date, click_date_interval, is_unique, offer_id, aff_id, url_id, finance_rule_id, ad_id, campaign_id, creative_id, placement_id, dma, city, state, zip, country, latitude, longitude, image, text, dynamic_location_text, source, sub1, sub2, sub3, sub4, sub5, cost, revenue, referrer, browser, os, ip);
         voltExecuteSQL(true);
 		
-        // Set the return value to 0: successful vote
+        // Set the return value to 0: successful click
         return CLICK_SUCCESSFUL;
     }
 }
